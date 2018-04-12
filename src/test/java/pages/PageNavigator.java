@@ -10,7 +10,7 @@ public class PageNavigator {
         this.driver = driver;
     }
 
-@Step("Navigate to home Page")
+//@Step("Navigate to home Page")
     public HomePage  getHomePage(){
         driver.get("https://sysla-stage.betavest53.no/");
         return new HomePage(driver);

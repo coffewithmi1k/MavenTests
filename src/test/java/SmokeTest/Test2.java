@@ -28,13 +28,13 @@ public class Test2 extends TNav {
 
 
     @Test(description = "Check that home Page is opened")
-    //@Step()
+    @Step("Verify Home Page is opened")
     public void getHomePage(){
         PageNavigator pn = new PageNavigator(driver);
         HomePage onHomePage = pn.getHomePage();
-        //Assert.assertTrue(driver.getTitle().contains("Sysla - SYSLA"));
+        Assert.assertTrue(onHomePage.checkHomePageOpened().contains("Sysla - SYSLAf"));
       // assertThat(driver.findElement(By.xpath("/html/body/nav/div[59]/div/div[3]/div[1]/a")).getText(), is("bli abonnent"));
-        assertThat(onHomePage.checkHomePageOpened(), is("Sysla - SYSLA"));
+       // assertThat(onHomePage.checkHomePageOpened(), is("Sysla - SYSLAd"));
         //check here, when test fails , in report this step is not marked as fail;
     }
 
