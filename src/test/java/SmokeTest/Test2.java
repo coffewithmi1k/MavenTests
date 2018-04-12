@@ -14,8 +14,13 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.HomePage;
+import pages.LogInPage;
 import pages.PageNavigator;
+import pages.RegisterPage;
 
+
+
+import java.sql.Driver;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
@@ -32,12 +37,27 @@ public class Test2 extends TNav {
     public void getHomePage(){
         PageNavigator pn = new PageNavigator(driver);
         HomePage onHomePage = pn.getHomePage();
-        Assert.assertTrue(onHomePage.checkHomePageOpened().contains("Sysla - SYSLAf"));
+        Assert.assertTrue(onHomePage.checkHomePageOpened().contains("Sysla - SYSLA"));
       // assertThat(driver.findElement(By.xpath("/html/body/nav/div[59]/div/div[3]/div[1]/a")).getText(), is("bli abonnent"));
        // assertThat(onHomePage.checkHomePageOpened(), is("Sysla - SYSLAd"));
         //check here, when test fails , in report this step is not marked as fail;
     }
 
+
+    @Test(description = "Check Log in with valid creds")
+    public void checkLoginWithValidCreds(){
+        PageNavigator pn = new PageNavigator(driver);
+        LogInPage onLogInPage = pn.getHomePage().navigateToLogInPage();
+        onLogInPage.fillTheFormWithValidCreds();
+        Assert.assertTrue(onLogInPage.verifyUserLoggedSuccessfully().getText().contains("asdasd"));
+    }
+    @Test(description = "Check successfull registration of a user")
+    public void CheckCreatingNewUser(){
+        PageNavigator pn = new PageNavigator(driver);
+        RegisterPage onRegisterPage = pn.getHomePage().navigateToLogInPage().navigateToRegisterPage();
+        onRegisterPage.FillRegisterWithValidData();
+        Assert.assertTrue(onRegisterPage.verifyUserRegisteredSuccessfully().getText().contains("Vi har sendt deg en e-post!"));
+    }
 
 
 

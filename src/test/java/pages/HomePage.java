@@ -23,5 +23,9 @@ public class HomePage  extends PageNavigator{
 
     return driver.getTitle();
     }
+    public LogInPage navigateToLogInPage(){
+        driver.findElement(By.xpath("/html/body/nav/div[4]/div/div[3]/div[2]/div[1]/a")).click();
+        return new LogInPage(driver);
+    }
 
 }
