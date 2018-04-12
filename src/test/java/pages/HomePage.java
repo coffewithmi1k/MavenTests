@@ -5,6 +5,8 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -24,7 +26,12 @@ public class HomePage  extends PageNavigator{
     return driver.getTitle();
     }
     public LogInPage navigateToLogInPage(){
-        driver.findElement(By.xpath("/html/body/nav/div[4]/div/div[3]/div[2]/div[1]/a")).click();
+        WebElement myDynamicElement = (new WebDriverWait(driver, 10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"onesignal-popover-cancel-button\"]")));
+        driver.findElement(By.xpath("//*[@id=\"onesignal-popover-cancel-button\"]")).click();
+        WebElement myDynamicElement2 = (new WebDriverWait(driver, 10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.className("spid-do-login")));
+        driver.findElement(By.className("spid-do-login")).click();
         return new LogInPage(driver);
     }
 

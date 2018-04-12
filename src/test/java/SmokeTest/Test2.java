@@ -10,6 +10,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -59,6 +62,18 @@ public class Test2 extends TNav {
         Assert.assertTrue(onRegisterPage.verifyUserRegisteredSuccessfully().getText().contains("Vi har sendt deg en e-post!"));
     }
 
+@Test
+    public void getLoginLink() throws InterruptedException {
+        driver.get("https://sysla.no/");
+    WebElement myDynamicElement2 = (new WebDriverWait(driver, 10))
+            .until(ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/nav/div[4]/div/div[3]/div[2]/div[1]/a")));
+    WebElement element = driver.findElement(By.xpath("/html/body/nav/div[4]/div/div[3]/div[2]/div[1]/a"));
 
+    Actions actions = new Actions(driver);
+
+    actions.moveToElement(element).click().perform();
+        Thread.sleep(4000);
+
+}
 
 }
